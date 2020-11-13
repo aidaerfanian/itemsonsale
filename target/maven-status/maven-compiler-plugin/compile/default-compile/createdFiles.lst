@@ -1,0 +1,11 @@
+io/microservice/assignment/itemsonsale/repositories/UsersRepository.class
+io/microservice/assignment/itemsonsale/types/AuthenticationResponse.class
+io/microservice/assignment/itemsonsale/types/AuthenticationRequest.class
+io/microservice/assignment/itemsonsale/utils/Helper.class
+io/microservice/assignment/itemsonsale/entities/Users.class
+io/microservice/assignment/itemsonsale/configs/ConfigManager.class
+io/microservice/assignment/itemsonsale/RequestsController.class
+io/microservice/assignment/itemsonsale/filters/RequestsFilter.class
+io/microservice/assignment/itemsonsale/ItemsOnSaleApplication.class
+io/microservice/assignment/itemsonsale/security/TokenManager.class
+io/microservice/assignment/itemsonsale/UsersService.class
