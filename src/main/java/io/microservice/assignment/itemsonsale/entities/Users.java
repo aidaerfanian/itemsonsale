@@ -5,10 +5,12 @@
  */
 package io.microservice.assignment.itemsonsale.entities;
 
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 /**
  *
  * @author aida.erfanian
@@ -21,6 +23,9 @@ public class Users {
 
     private String username;
     private String recommendations;
+    
+    @OneToMany(mappedBy="users")
+    private Set<Orders> orders;
 
     public void setRecommendations(String recommendations) {
         this.recommendations = recommendations;
@@ -46,6 +51,10 @@ public class Users {
         return username;
     }
 
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -53,5 +62,11 @@ public class Users {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
+    }
+    
+    
 
 }
