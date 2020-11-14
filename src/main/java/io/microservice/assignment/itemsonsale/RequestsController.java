@@ -57,7 +57,7 @@ public class RequestsController {
     @GetMapping("/recommendations/{id}")
     public List<Orders> recommendations(@PathVariable String id) {
         int userId = Integer.parseInt(id);
-        return ordersRepository.findByUsers_Id(userId);
+        return ordersRepository.findAllByUsers_userId(userId);
 //        return usersRepository.findById(userId);
     }
 

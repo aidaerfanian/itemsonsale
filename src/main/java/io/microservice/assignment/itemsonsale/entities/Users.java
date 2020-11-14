@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int userId;
 
     private String username;
     private String recommendations;
@@ -43,10 +43,6 @@ public class Users {
         this.recommendations = password;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -55,8 +51,12 @@ public class Users {
         return orders;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setUsername(String username) {
@@ -66,7 +66,4 @@ public class Users {
     public void setOrders(Set<Orders> orders) {
         this.orders = orders;
     }
-    
-    
-
 }

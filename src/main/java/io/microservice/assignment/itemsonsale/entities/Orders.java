@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int orderId;
 
     @Basic(optional = false)
     @Column(name = "timestamp", insertable = false, updatable = false)
@@ -38,16 +38,13 @@ public class Orders {
     private Set<Items> items;
     
     @ManyToOne
-    @JoinColumn(name="id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="userId", referencedColumnName="userId", nullable=false, insertable=false, updatable=false)
     private Users users;
     
     private int userRanking;
     private String status;
     private boolean favorite;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
@@ -73,9 +70,22 @@ public class Orders {
         this.favorite = favorite;
     }
 
-    public int getId() {
-        return id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
 
     public Date getTimestamp() {
         return timestamp;

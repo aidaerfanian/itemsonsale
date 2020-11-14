@@ -9,7 +9,7 @@
  */
 
 CREATE TABLE `orders` (
-    `id` int NOT NULL auto_increment,
+    `order_id` int NOT NULL auto_increment,
     `timestamp` timestamp NOT NULL default current_timestamp ON UPDATE current_timestamp,
     `item_id` int NOT NULL,
     `user_id` int NOT NULL,
@@ -17,11 +17,11 @@ CREATE TABLE `orders` (
     `status` varchar(255),
     `favorite` tinyint(1) NOT NULL default 0,
     FOREIGN KEY (`item_id`)
-        REFERENCES items(id)
+        REFERENCES items(item_id)
         ON DELETE CASCADE,
     FOREIGN KEY (`user_id`)
-        REFERENCES users(id)
+        REFERENCES users(user_id)
         ON DELETE CASCADE, 
 
-    PRIMARY KEY  (`id`)
+    PRIMARY KEY  (`order_id`)
 );

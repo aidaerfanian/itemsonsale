@@ -9,11 +9,11 @@
  */
 
 CREATE TABLE `items` (
-    `id` int NOT NULL auto_increment,
+    `item_id` int NOT NULL auto_increment,
     `name` varchar(20),
     `description` varchar(255),
     `category` varchar(255) NOT NULL default 'other',
     `price` int,
     `on_sale` tinyint(1) NOT NULL default 0,
-    PRIMARY KEY  (`id`)
+    PRIMARY KEY  (`item_id`)
 );

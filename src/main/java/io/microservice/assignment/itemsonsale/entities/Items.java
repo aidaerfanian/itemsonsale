@@ -20,7 +20,7 @@ import javax.persistence.ManyToOne;
 public class Items {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int itemId;
 
     private String name;
     private String description;
@@ -29,12 +29,10 @@ public class Items {
     private boolean onSale;
 
     @ManyToOne
-    @JoinColumn(name="id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="orderId", referencedColumnName="orderId", nullable=false, insertable=false, updatable=false)
     private Orders orders;    
     
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public void setName(String name) {
         this.name = name;
@@ -60,13 +58,18 @@ public class Items {
         this.orders = orders;
     }
 
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
     public Orders getOrders() {
         return orders;
     }
     
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;

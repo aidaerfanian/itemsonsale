@@ -10,8 +10,8 @@
 
 
 CREATE TABLE `users` (
-    `id` int NOT NULL auto_increment,
+    `user_id` int NOT NULL auto_increment,
     `username` varchar(20),
     `recommendations` varchar(255),
-    PRIMARY KEY  (`id`)
+    PRIMARY KEY  (`user_id`)
 );
