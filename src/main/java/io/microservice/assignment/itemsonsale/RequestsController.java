@@ -5,16 +5,14 @@
  */
 package io.microservice.assignment.itemsonsale;
 
+import io.microservice.assignment.itemsonsale.entities.Items;
 import io.microservice.assignment.itemsonsale.entities.Orders;
-import io.microservice.assignment.itemsonsale.entities.Users;
 import io.microservice.assignment.itemsonsale.repositories.OrdersRepository;
 import io.microservice.assignment.itemsonsale.repositories.UsersRepository;
 import io.microservice.assignment.itemsonsale.security.TokenManager;
 import io.microservice.assignment.itemsonsale.types.AuthenticationRequest;
 import io.microservice.assignment.itemsonsale.types.AuthenticationResponse;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -56,9 +54,9 @@ public class RequestsController {
     }
     
     @GetMapping("/recommendations/{id}")
-    public List<Orders> recommendations(@PathVariable String id) {
+    public List<Items> recommendations(@PathVariable String id) {
         int userId = Integer.parseInt(id);
-        return ordersRepository.findByUser(userId);
+        return ordersRepository.getHighestRankedOnSaleItems();
 //        return usersRepository.findById(userId);
     }
 
