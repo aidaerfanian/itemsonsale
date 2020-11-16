@@ -6,13 +6,11 @@
 package io.microservice.assignment.itemsonsale;
 
 import io.microservice.assignment.itemsonsale.entities.Items;
-import io.microservice.assignment.itemsonsale.entities.Orders;
 import io.microservice.assignment.itemsonsale.repositories.OrdersRepository;
-import io.microservice.assignment.itemsonsale.repositories.UsersRepository;
 import io.microservice.assignment.itemsonsale.security.TokenManager;
 import io.microservice.assignment.itemsonsale.types.AuthenticationRequest;
 import io.microservice.assignment.itemsonsale.types.AuthenticationResponse;
-import java.util.List;
+import java.util.LinkedHashSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,9 +31,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RequestsController {
     
     @Autowired 
-    private UsersRepository usersRepository;
-    
-    @Autowired 
     private OrdersRepository ordersRepository;
 
     
@@ -48,16 +43,27 @@ public class RequestsController {
     @Autowired
     private TokenManager tokenManager;
     
-    @RequestMapping("/hello")
+    @RequestMapping("/welcome")
     public String hello() {
-        return "Hello World!";
+        return "Welcome to Items On Sale API!";
     }
     
+    /**
+     *
+     * @param id
+     * @return a HashSet of recommended items
+     */
     @GetMapping("/recommendations/{id}")
-    public List<Items> recommendations(@PathVariable String id) {
+    public LinkedHashSet<Items> recommendations(@PathVariable String id) {
         int userId = Integer.parseInt(id);
-        return ordersRepository.getHighestRankedOnSaleItems();
-//        return usersRepository.findById(userId);
+
+        LinkedHashSet<Items> itemsOfFavoriteCategories = ordersRepository.getItemsOfFavoriteCategories(userId);
+        LinkedHashSet<Items> highestRankedOnSaleItems = ordersRepository.getHighestRankedOnSaleItems();
+        
+        LinkedHashSet<Items> recommendedItems = new LinkedHashSet<>(itemsOfFavoriteCategories);
+        recommendedItems.addAll(highestRankedOnSaleItems);
+        
+        return recommendedItems;
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST) 
