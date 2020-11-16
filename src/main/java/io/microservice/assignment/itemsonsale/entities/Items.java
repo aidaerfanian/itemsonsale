@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,13 +25,7 @@ public class Items {
     private String category;
     private int price;
     private boolean onSale;
-
-    @ManyToOne
-    @JoinColumn(name="orderId", referencedColumnName="orderId", nullable=false, insertable=false, updatable=false)
-    private Orders orders;    
     
-
-
     public void setName(String name) {
         this.name = name;
     }
@@ -54,10 +46,6 @@ public class Items {
         this.onSale = onSale;
     }
 
-    public void setOrders(Orders orders) {
-        this.orders = orders;
-    }
-
     public void setItemId(int itemId) {
         this.itemId = itemId;
     }
@@ -65,11 +53,6 @@ public class Items {
     public int getItemId() {
         return itemId;
     }
-
-    public Orders getOrders() {
-        return orders;
-    }
-    
 
     public String getName() {
         return name;

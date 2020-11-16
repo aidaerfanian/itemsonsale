@@ -14,6 +14,7 @@ import io.microservice.assignment.itemsonsale.types.AuthenticationRequest;
 import io.microservice.assignment.itemsonsale.types.AuthenticationResponse;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -57,7 +58,7 @@ public class RequestsController {
     @GetMapping("/recommendations/{id}")
     public List<Orders> recommendations(@PathVariable String id) {
         int userId = Integer.parseInt(id);
-        return ordersRepository.findAllByUsers_userId(userId);
+        return ordersRepository.findByUser(userId);
 //        return usersRepository.findById(userId);
     }
 

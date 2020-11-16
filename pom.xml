@@ -19,7 +19,7 @@
                 <flyway.user>root</flyway.user>
                 <flyway.password>root</flyway.password>
                 <flyway.schemas>itemsonsale</flyway.schemas>
-                <flyway.url>jdbc:mysql://localhost:3306/itemsonsale</flyway.url>
+                <flyway.url>jdbc:mysql://localhost:3306/items-on-sale-db</flyway.url>
 	</properties>
 
 	<dependencies>

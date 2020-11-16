@@ -5,8 +5,8 @@
  */
 package io.microservice.assignment.itemsonsale.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -33,9 +32,10 @@ public class Orders {
     @Column(name = "timestamp", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
-    
-    @OneToMany(mappedBy="orders")
-    private Set<Items> items;
+
+    @ManyToOne
+    @JoinColumn(name="itemId", referencedColumnName="itemId", nullable=false, insertable=false, updatable=false)
+    private Items items;
     
     @ManyToOne
     @JoinColumn(name="userId", referencedColumnName="userId", nullable=false, insertable=false, updatable=false)
@@ -45,13 +45,8 @@ public class Orders {
     private String status;
     private boolean favorite;
 
-
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public void setItems(Set<Items> items) {
-        this.items = items;
     }
 
     public void setUser(Users users) {
@@ -78,27 +73,28 @@ public class Orders {
         this.users = users;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public void setItems(Items items) {
+        this.items = items;
     }
 
+    @JsonIgnoreProperties(value = "refProductPriceEntities", allowSetters = true)
+    public Items getItems() {
+        return items;
+    }
+
+    @JsonIgnoreProperties(value = "refProductPriceEntities", allowSetters = true)
     public Users getUsers() {
         return users;
     }
 
+    public int getOrderId() {
+        return orderId;
+    }
 
     public Date getTimestamp() {
         return timestamp;
     }
-
-    public Set<Items> getItems() {
-        return items;
-    }
-
-    public Users getUser() {
-        return users;
-    }
-
+    
     public int getUserRanking() {
         return userRanking;
     }
@@ -110,6 +106,4 @@ public class Orders {
     public boolean isFavorite() {
         return favorite;
     }
-    
-    
 }

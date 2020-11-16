@@ -10,11 +10,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 /**
  *
  * @author aida.erfanian
  */
 @Repository
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
-    List<Orders> findAllByUsers_userId(Integer id);
+
+    @Query("SELECT DISTINCT(o) FROM Orders o INNER JOIN o.users u WHERE u.userId = :userId")
+    List<Orders> findByUser(@Param("userId") Integer userId);
+    
 }
