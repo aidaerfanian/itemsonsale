@@ -3,11 +3,11 @@ This is an API implemented by using Spring boot framework and maven for dependen
 The API recommends items on sale to a valid user/consumer on a shopping website.
 
 
-##Running the MYSQL database container
+## Running the MYSQL database container
 1. `cd` into the project root directory, and
 2. run `docker-compose up -d`
 
-#Building the service
+## Building the service
 1. `cd` into the project root directory, and
 2. Make sure the MySQL docker container is up and running. If not, run `docker-compose up -d`.
 3. Run the following command:
@@ -15,19 +15,19 @@ The API recommends items on sale to a valid user/consumer on a shopping website.
     mvn package
     ```
 
-##Running the service
+## Running the service
 1. `cd` into the project root directory, and
 2. Make sure the MySQL docker container is up and running.  If not, run `docker-compose up -d`.
 3. Run the following command:
     ```mvn spring-boot:run```
 
-##Running the tests
+## Running the tests
 1. `cd` into the project root directory, and
 2. Make sure the MySQL docker container is up and running. If not, run `docker-compose up -d`.
 3. Run the following command:
     ```mvn spring-boot:test```
 
-##Sending Requests to the API Endpoints
+## Sending Requests to the API Endpoints
 The API has the following endpoints:
 1. An authentication POST endpoint: /authenticate
 2. A greetings GET endpoint: /welcome
